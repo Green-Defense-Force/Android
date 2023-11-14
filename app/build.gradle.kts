@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.three.green_defense_force"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.three.green_defense_force"
