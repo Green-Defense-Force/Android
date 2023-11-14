@@ -20,6 +20,16 @@
         android:src="@drawable/bg1" />
 
     <ImageView
+        android:id="@+id/monster"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="180dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/monster"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
         android:id="@+id/stopCharacter"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -29,7 +39,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/moveCharacter"
+        android:id="@+id/walkCharacter"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="180dp"
+        android:src="@drawable/character1_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/attackCharacter"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="180dp"
@@ -37,14 +56,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/monster"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="180dp"
-        android:src="@drawable/monster"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/leftBtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="@drawable/left_btn" />
+
+        <Button
+            android:id="@+id/rightBtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="@drawable/right_btn" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/attackBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/attack_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
