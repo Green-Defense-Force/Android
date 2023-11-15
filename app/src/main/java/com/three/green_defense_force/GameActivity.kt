@@ -13,9 +13,9 @@ class GameActivity : AppCompatActivity() {
     private lateinit var stopCharacter: ImageView
     private lateinit var walkCharacter: ImageView
     private lateinit var attackCharacter: ImageView
-    private lateinit var leftBtn: Button
-    private lateinit var rightBtn: Button
-    private lateinit var attackBtn: Button
+    private lateinit var leftBtn: ImageView
+    private lateinit var rightBtn: ImageView
+    private lateinit var attackBtn: ImageView
 
     private var moveDistance = 80f // 초당 이동할 거리
 
