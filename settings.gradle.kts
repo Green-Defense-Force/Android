@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "green-defense-force"
 include(":app")
+include(":joystick")

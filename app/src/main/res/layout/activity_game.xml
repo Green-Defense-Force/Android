@@ -8,84 +8,77 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#7CAB41"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageView
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="200dp"
+        android:background="#6C9338"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_1" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageView
-        android:id="@+id/monster"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="180dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/monster_1"
+        android:id="@+id/charUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/game_char_up"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/stopCharacter"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="180dp"
-        android:src="@drawable/char_basic_stop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/walkCharacter"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="180dp"
-        android:src="@drawable/char_basic_walk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/attackCharacter"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="180dp"
-        android:src="@drawable/char_basic_attack"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/value_angle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:text="angle : 0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/joystick"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/leftBtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_left" />
+    <TextView
+        android:id="@+id/value_strength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="strength : 0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/value_angle"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/rightBtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_right" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/attackBtn"
+    <com.three.joystick.JoystickView
+        android:id="@+id/joystick"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/btn_attack"
+        android:layout_margin="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="48dp"
+        app:joystickInnerColor="@color/white"
+        app:joystickOuterColor="@color/blue"
+        app:joystickUseSpring="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/restAttackImg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/game_rest_attack"
+        app:layout_constraintEnd_toStartOf="@+id/restAttackText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/restAttackText"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/applesdgothicneob"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
