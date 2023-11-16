@@ -7,52 +7,69 @@
     tools:context=".GameActivity">
 
     <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6C9338"
         android:scaleType="centerCrop"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:src="@drawable/game_bg_2" />
 
     <ImageView
-        android:id="@+id/charUp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/game_char_up"
+        android:id="@+id/bonusCoin1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="160dp"
+        android:src="@drawable/game_coin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/bonusCoin2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/game_coin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/monster1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/game_garbage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/monster2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="450dp"
+        android:src="@drawable/game_skull"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/charBasic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/game_char_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/value_angle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="angle : 0"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/joystick"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/value_strength"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="strength : 0"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/value_angle"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.three.joystick.JoystickView
         android:id="@+id/joystick"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="30dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
         app:joystickInnerColor="@color/white"
-        app:joystickOuterColor="@color/blue"
+        app:joystickOuterColor="@color/transparent"
         app:joystickUseSpring="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,7 +79,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/game_rest_attack"
+        android:src="@drawable/game_diamond"
         app:layout_constraintEnd_toStartOf="@+id/restAttackText"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,12 +89,11 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:fontFamily="@font/applesdgothicneob"
+        android:fontFamily="@font/neodgm"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
