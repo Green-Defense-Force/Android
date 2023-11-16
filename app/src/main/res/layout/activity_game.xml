@@ -7,7 +7,7 @@
     tools:context=".GameActivity">
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/mainBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/monster1"
+        android:id="@+id/monsterView1"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="100dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/monster2"
+        android:id="@+id/monsterView2"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/charBasic"
+        android:id="@+id/charImgView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/game_char_down"
@@ -95,6 +95,18 @@
         android:textColor="@color/black"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:fontFamily="@font/applesdgothicneoul"
+        android:layout_marginLeft="15dp"
+        android:textSize="25dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

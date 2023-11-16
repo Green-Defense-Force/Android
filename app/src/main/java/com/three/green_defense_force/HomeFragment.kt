@@ -17,6 +17,12 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, GameActivity::class.java)
             startActivity(intent)
         }
+
+        val startDetailBtn: Button = view.findViewById(R.id.startDetailBtn)
+        startDetailBtn.setOnClickListener {
+            val intent = Intent(activity, GameDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

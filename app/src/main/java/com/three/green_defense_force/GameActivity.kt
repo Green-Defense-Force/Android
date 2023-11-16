@@ -19,7 +19,7 @@ class GameActivity : AppCompatActivity() {
         window.navigationBarColor = getColor(R.color.green)
 
         val joystickView = findViewById<JoystickView>(R.id.joystick)
-        val charUpImgView = findViewById<ImageView>(R.id.charBasic)
+        val charImgView = findViewById<ImageView>(R.id.charImgView)
 
         joystickView.setOnMoveListener { angle, strength ->
 
@@ -38,9 +38,9 @@ class GameActivity : AppCompatActivity() {
             // 조이스틱이 멈췄을 때 이전 상태의 기본 이미지 유지
             if (strength == 0) {
                 val previousDirectionImage = getPreviousDirectionImage(previousAngle)
-                charUpImgView.setImageResource(previousDirectionImage)
+                charImgView.setImageResource(previousDirectionImage)
             } else {
-                charUpImgView.setImageResource(imageResource)
+                charImgView.setImageResource(imageResource)
                 previousAngle = angle
                 previousImageResource = imageResource
             }
@@ -50,8 +50,8 @@ class GameActivity : AppCompatActivity() {
             val moveY = strength * 0.2f * -Math.sin(radian).toFloat()
 
             // 현재 캐릭터의 위치
-            val currentX = charUpImgView.x
-            val currentY = charUpImgView.y
+            val currentX = charImgView.x
+            val currentY = charImgView.y
 
             // 화면 경계 값
             val screenWidth = resources.displayMetrics.widthPixels
@@ -62,12 +62,12 @@ class GameActivity : AppCompatActivity() {
             val newY = currentY + moveY
 
             // 화면 경계 내에 위치하도록 제한
-            val clampedX = newX.coerceIn(0f, (screenWidth - charUpImgView.width).toFloat())
-            val clampedY = newY.coerceIn(0f, (screenHeight - charUpImgView.height).toFloat())
+            val clampedX = newX.coerceIn(0f, (screenWidth - charImgView.width).toFloat())
+            val clampedY = newY.coerceIn(0f, (screenHeight - charImgView.height).toFloat())
 
-            // "charUp" 이미지 뷰의 위치 변경
-            charUpImgView.x = clampedX
-            charUpImgView.y = clampedY
+            // "charImgView" 이미지 뷰의 위치 변경
+            charImgView.x = clampedX
+            charImgView.y = clampedY
         }
     }
 

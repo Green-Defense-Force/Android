@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
 
     <Button
         android:id="@+id/startBtn"
-        android:layout_width="160dp"
+        android:layout_width="190dp"
         android:layout_height="65dp"
+        android:layout_margin="20dp"
         android:background="@drawable/btn_skyblue_radius"
         android:fontFamily="@font/applesdgothicneoul"
         android:gravity="center"
         android:text="게임 시작"
         android:textColor="#1E6197"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/startDetailBtn"
+        android:layout_width="190dp"
+        android:layout_height="65dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_skyblue_radius"
+        android:fontFamily="@font/applesdgothicneoul"
+        android:gravity="center"
+        android:text="포켓몬 시작"
+        android:textColor="#1E6197"
+        android:textSize="20sp" />
+
+</LinearLayout>
