@@ -2,6 +2,7 @@ package com.three.green_defense_force
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import com.three.joystick.JoystickView
 
@@ -20,6 +21,12 @@ class GameActivity : AppCompatActivity() {
 
         val joystickView = findViewById<JoystickView>(R.id.joystick)
         val charImgView = findViewById<ImageView>(R.id.charImgView)
+
+        // 뒤로 가기 버튼
+        val backBtn = findViewById<Button>(R.id.backBtn)
+        backBtn.setOnClickListener {
+            finish()
+        }
 
         joystickView.setOnMoveListener { angle, strength ->
 
