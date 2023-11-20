@@ -1,4 +1,4 @@
-package com.three.green_defense_force
+package com.three.green_defense_force.activities
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.three.green_defense_force.customviews.CustomButton
+import com.three.green_defense_force.R
 
 class GameDetailActivity : AppCompatActivity() {
     private var originBtnImg = R.drawable.game_btn_before

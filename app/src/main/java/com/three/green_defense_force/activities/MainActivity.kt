@@ -1,9 +1,15 @@
-package com.three.green_defense_force
+package com.three.green_defense_force.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.three.green_defense_force.R
+import com.three.green_defense_force.fragments.ChallengeFragment
+import com.three.green_defense_force.fragments.HomeFragment
+import com.three.green_defense_force.fragments.MypageFragment
+import com.three.green_defense_force.fragments.PloggingFragment
+import com.three.green_defense_force.fragments.StoreFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView

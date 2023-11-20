@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameDetailActivity">
+    tools:context=".activities.GameDetailActivity">
 
     <ImageView
         android:id="@+id/detailBackground"
@@ -105,7 +105,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.three.green_defense_force.CustomButton
+    <com.three.green_defense_force.customviews.CustomButton
         android:id="@+id/attackBtn"
         android:layout_width="160dp"
         android:layout_height="120dp"
@@ -136,6 +136,7 @@
         android:layout_marginLeft="5dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/applesdgothicneoul"
+        android:letterSpacing="0.1"
         android:text="Back"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"

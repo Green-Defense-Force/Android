@@ -1,4 +1,4 @@
-package com.three.green_defense_force
+package com.three.green_defense_force.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.three.green_defense_force.R
+import com.three.green_defense_force.activities.GameActivity
+import com.three.green_defense_force.activities.GameDetailActivity
 
 class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
