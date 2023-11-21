@@ -1,10 +1,11 @@
-package com.three.green_defense_force
+package com.three.green_defense_force.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.three.green_defense_force.R
 
 class MypageFragment : Fragment() {
 
