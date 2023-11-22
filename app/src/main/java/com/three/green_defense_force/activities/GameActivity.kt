@@ -1,7 +1,10 @@
 package com.three.green_defense_force.activities
 
+import android.content.Intent
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -16,11 +19,16 @@ import com.three.joystick.JoystickView
 import kotlin.random.Random
 
 class GameActivity : AppCompatActivity() {
-    private lateinit var viewModel: GameViewModel
+    private lateinit var gameViewModel: GameViewModel
+    private lateinit var gameModel: Game
+    private lateinit var fieldView: ImageView
     private lateinit var charImageView: ImageView
+    private lateinit var joystickView: JoystickView
+    private lateinit var constraintLayout: ViewGroup
 
     private var screenWidth: Int = 0
     private var screenHeight: Int = 0
+    private var isStop = false
 
     // 이전 각도, 이미지 저장하는 변수
     private var prevAngle: Int = 0
@@ -29,9 +37,13 @@ class GameActivity : AppCompatActivity() {
     // Seed : 현재 시간으로 설정
     private val random = Random(System.currentTimeMillis())
 
+    // 동적 생성된 ImageView 저장하는 리스트
+    private val coinViews = mutableListOf<ImageView>()
+    private val monsterViews = mutableListOf<ImageView>()
+
     // 상수
-    private val MOVE_FACTOR = 0.2f
     private val COLOR_GREEN = R.color.green
+    private val MOVE_FACTOR = 0.2f
     private val MONSTER_SIZE = 70
     private val COIN_SIZE = 30
 
@@ -40,39 +52,42 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
         setBarColor()
+        setBackButton()
 
         screenWidth = resources.displayMetrics.widthPixels
         screenHeight = resources.displayMetrics.heightPixels
 
-        viewModel = GameViewModel()
+        gameViewModel = GameViewModel()
+        gameModel = gameViewModel.fetchGameData("6uiaYtLh")
+
+        fieldView = findViewById(R.id.fieldView)
         charImageView = findViewById(R.id.charImageView)
+        joystickView = findViewById(R.id.joystick)
+        constraintLayout = findViewById(R.id.constraintLayout)
 
-        val joystickView = findViewById<JoystickView>(R.id.joystick)
-        val constraintLayout = findViewById<ViewGroup>(R.id.constraintLayout)
+        loadImageFromUrl(gameModel.field, fieldView)
+        loadImageFromUrl(gameModel.characterImages[3], charImageView)
 
-        val backBtn = findViewById<Button>(R.id.backBtn)
-        backBtn.setOnClickListener {
-            finish()
-        }
-
-        // 가상 User 객체 생성
-        val gameViewModel = viewModel.fetchUserData("6uiaYtLh")
-        loadImageFromUrl(gameViewModel.characterImages[3], charImageView)
-
-        joystickView.setOnMoveListener { angle, strength ->
-            updateCharacterImage(angle, strength, charImageView, gameViewModel.characterImages)
-            moveCharacter(angle, strength, screenWidth, screenHeight, charImageView)
-        }
-
-        updateUserInfo(gameViewModel)
-        addRandomBonusCoin(gameViewModel.bonusCoin, constraintLayout)
-        addRandomMonsters(gameViewModel.monsterPreviews, constraintLayout)
+        setJoystick()
+        setTicketAmount(gameModel.ticketAmount)
+        setCoinAmount(gameModel.coinAmount)
+        addRandomBonusCoin(gameModel.bonusCoin, constraintLayout)
+        addRandomMonsters(gameModel.monsterPreviews, constraintLayout)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // Glide 생명주기 관리
-        Glide.with(this).clear(charImageView)
+    override fun onResume() {
+        super.onResume()
+        isStop = false
+        joystickView.setAngle(0)
+        joystickView.setStrength(0)
+        joystickView.setOnMoveListener { angle, strength ->
+            if (!isStop) {
+                updateCharacterImage(angle, strength, charImageView, gameModel.characterImages)
+                moveCharacter(angle, strength, screenWidth, screenHeight, charImageView)
+                checkCoinIntersect(charImageView)
+                checkMonsterIntersect(charImageView)
+            }
+        }
     }
 
     /** 상태바 및 하단바 색상 지정하는 함수 */
@@ -95,7 +110,27 @@ class GameActivity : AppCompatActivity() {
             .into(imageView)
     }
 
-    /** 조이스틱의 각도에 따라 캐릭터 이미지 변경하는 함수 */
+    /** 뒤로 가기 버튼 설정하는 함수 */
+    private fun setBackButton() {
+        val backBtn: Button = findViewById(R.id.backBtn)
+        backBtn.setOnClickListener {
+            finish()
+        }
+    }
+
+    /** 조이스틱 버튼 설정하는 함수 */
+    private fun setJoystick() {
+        joystickView.setOnMoveListener { angle, strength ->
+            if (!isStop) {
+                updateCharacterImage(angle, strength, charImageView, gameModel.characterImages)
+                moveCharacter(angle, strength, screenWidth, screenHeight, charImageView)
+                checkCoinIntersect(charImageView)
+                checkMonsterIntersect(charImageView)
+            }
+        }
+    }
+
+    /** 조이스틱 각도에 따라 캐릭터 이미지 변경하는 함수 */
     private fun updateCharacterImage(
         angle: Int,
         strength: Int,
@@ -126,7 +161,7 @@ class GameActivity : AppCompatActivity() {
             else -> prevImageResource
         }
 
-        // 조이스틱이 멈췄을 때 이전 상태의 기본 이미지 유지
+        // 조이스틱 멈췄을 때 이전 상태의 기본 이미지 유지
         if (strength == 0) {
             loadImageFromUrl(getPreviousDirectionImage(prevAngle, userImages), charImageView)
         } else {
@@ -186,65 +221,106 @@ class GameActivity : AppCompatActivity() {
         charImageView.y = clampedY
     }
 
-    /** 랜덤한 위치에 몬스터 이미지 표출하는 함수 */
-    private fun addRandomMonsters(monsterPreview: List<MonsterPreview>, parentLayout: ViewGroup) {
-        addRandomElements(
-            monsterPreview.map { it.monsterImage },
-            parentLayout,
-            MONSTER_SIZE,
-            MONSTER_SIZE,
-            false
-        )
-    }
-
-    /** 랜덤한 위치에 코인 이미지 표출하는 함수 */
-    private fun addRandomBonusCoin(bonusCoin: Int, parentLayout: ViewGroup) {
-        val coinImages = List(bonusCoin) { "" }
-        addRandomElements(coinImages, parentLayout, COIN_SIZE, COIN_SIZE, true)
-    }
-
-    /** 랜덤한 위치에 이미지 표출하는 함수 */
-    private fun addRandomElements(
-        images: List<String>,
-        parentLayout: ViewGroup,
-        width: Int,
-        height: Int,
-        useLocalResource: Boolean
-    ) {
-        for (image in images) {
-            val elementView = ImageView(this)
-            elementView.layoutParams = ViewGroup.LayoutParams(dpToPx(width), dpToPx(height))
-
-            if (useLocalResource) {
-                elementView.setImageResource(R.drawable.game_coin)
-            } else {
-                loadImageFromUrl(image, elementView)
-            }
-
-            val maxX = screenWidth - elementView.width - dpToPx(width)
-            val maxY = screenHeight - elementView.height - dpToPx(height)
-            elementView.x = random.nextInt(0, maxX).toFloat().coerceIn(0f, maxX.toFloat())
-            elementView.y = random.nextInt(0, maxY).toFloat().coerceIn(0f, maxY.toFloat())
-
-            parentLayout.addView(elementView)
-        }
-    }
-
-    /** 유저 정보 업데이트 함수 */
-    private fun updateUserInfo(gameModel: Game) {
-        updateTicketAmount(gameModel.ticketAmount)
-        updateCoinAmount(gameModel.coinAmount)
-    }
-
-    /** 화면에 티켓 정보 업데이트 함수 */
-    private fun updateTicketAmount(ticketAmount: Int) {
+    /** 화면에 티켓 정보 표출하는 함수 */
+    private fun setTicketAmount(ticketAmount: Int) {
         val ticketAmountTextView = findViewById<TextView>(R.id.ticketAmount)
         ticketAmountTextView.text = ticketAmount.toString()
     }
 
-    /** 화면에 코인 정보 업데이트 함수 */
-    private fun updateCoinAmount(coinAmount: Int) {
+    /** 화면에 코인 정보 표출하는 함수 */
+    private fun setCoinAmount(coinAmount: Int) {
         val coinAmountTextView = findViewById<TextView>(R.id.coinAmount)
         coinAmountTextView.text = coinAmount.toString()
+    }
+
+    /** 화면에 몬스터 이미지 표출하는 함수 */
+    private fun addRandomMonsters(monsterPreviews: List<MonsterPreview>, parentLayout: ViewGroup) {
+        val monsterImages = monsterPreviews.map { it.monsterImage }
+
+        for (monsterImage in monsterImages) {
+            val monsterView = ImageView(this)
+            monsterView.layoutParams =
+                ViewGroup.LayoutParams(dpToPx(MONSTER_SIZE), dpToPx(MONSTER_SIZE))
+
+            loadImageFromUrl(monsterImage, monsterView)
+
+            val maxX = screenWidth - monsterView.width - dpToPx(MONSTER_SIZE)
+            val maxY = screenHeight - monsterView.height - dpToPx(MONSTER_SIZE)
+            monsterView.x = random.nextInt(0, maxX).toFloat().coerceIn(0f, maxX.toFloat())
+            monsterView.y = random.nextInt(0, maxY).toFloat().coerceIn(0f, maxY.toFloat())
+
+            monsterView.tag = monsterPreviews.first { it.monsterImage == monsterImage }.monsterId
+
+            parentLayout.addView(monsterView)
+            monsterViews.add(monsterView)
+        }
+    }
+
+    /** 화면에 보너스 코인 이미지 표출하는 함수 */
+    private fun addRandomBonusCoin(bonusCoin: Int, parentLayout: ViewGroup) {
+        for (i in 0 until bonusCoin) {
+            val coinView = ImageView(this)
+            coinView.setImageResource(R.drawable.game_coin)
+            coinView.layoutParams = ViewGroup.LayoutParams(dpToPx(COIN_SIZE), dpToPx(COIN_SIZE))
+
+            val maxX = screenWidth - coinView.width - dpToPx(COIN_SIZE)
+            val maxY = screenHeight - coinView.height - dpToPx(COIN_SIZE)
+            coinView.x = random.nextInt(0, maxX).toFloat().coerceIn(0f, maxX.toFloat())
+            coinView.y = random.nextInt(0, maxY).toFloat().coerceIn(0f, maxY.toFloat())
+
+            parentLayout.addView(coinView)
+            coinViews.add(coinView)
+        }
+    }
+
+    /** 몬스터와 만났을 때 처리 담당하는 함수 */
+    private fun checkMonsterIntersect(charImageView: ImageView) {
+        for (monsterView in monsterViews) {
+            val charRect = Rect()
+            val monsterRect = Rect()
+
+            charImageView.getHitRect(charRect)
+            monsterView.getHitRect(monsterRect)
+
+            if (Rect.intersects(charRect, monsterRect)) {
+                isStop = true
+                joystickView.setAngle(0)
+                joystickView.setStrength(0)
+                loadImageFromUrl(
+                    getPreviousDirectionImage(prevAngle, gameModel.characterImages),
+                    charImageView
+                )
+
+                val monsterId = monsterView.tag as String
+                val intent = Intent(this, GameDetailActivity::class.java).apply {
+                    putExtra("MONSTER_ID", monsterId)
+                    putExtra("USER_ID", gameModel.userId)
+                }
+                startActivity(intent)
+
+                monsterView.visibility = View.GONE
+                monsterViews.remove(monsterView)
+                break
+            }
+        }
+    }
+
+    /** 코인과 만났을 때 처리 담당하는 함수 */
+    private fun checkCoinIntersect(charImageView: ImageView) {
+        for (coinView in coinViews) {
+            val charRect = Rect()
+            val coinRect = Rect()
+
+            charImageView.getHitRect(charRect)
+            coinView.getHitRect(coinRect)
+
+            if (Rect.intersects(charRect, coinRect)) {
+                gameViewModel.handleCoinIntersect(gameModel)
+                setCoinAmount(gameModel.coinAmount)
+                coinView.visibility = View.GONE
+                coinViews.remove(coinView)
+                break
+            }
+        }
     }
 }

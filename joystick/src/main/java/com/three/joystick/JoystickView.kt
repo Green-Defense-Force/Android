@@ -8,7 +8,9 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.atan2
+import kotlin.math.cos
 import kotlin.math.pow
+import kotlin.math.sin
 import kotlin.math.sqrt
 
 class JoystickView(context: Context?, attrs: AttributeSet?): View(context, attrs), Runnable {
@@ -195,6 +197,33 @@ class JoystickView(context: Context?, attrs: AttributeSet?): View(context, attrs
     // 조이스틱 움직임 리스너 인터페이스
     fun interface OnMoveListener {
         fun onMove(x: Int, y: Int)
+    }
+
+    // 조이스틱 각도 설정 함수
+    fun setAngle(angle: Int) {
+        val radian = Math.toRadians(angle.toDouble())
+        // 각도와 현재 조이스틱의 강도(반지름)를 사용하여 새로운 조이스틱 위치를 계산
+        val newX = mCenterX + getStrength() / 100f * outerRadius * cos(radian)
+        val newY = mCenterY - getStrength() / 100f * outerRadius * sin(radian)
+        updateJoystickPosition(newX.toFloat(), newY.toFloat())
+    }
+
+    // 조이스틱 강도 설정 함수
+    fun setStrength(strength: Int) {
+        // 강도를 비율로 변환 (0 ~ 100 -> 0 ~ 1)
+        val ratio = strength / 100f
+        // 새로운 조이스틱 위치를 계산하고 업데이트
+        val newX = mCenterX + (mPosX - mCenterX) * ratio
+        val newY = mCenterY + (mPosY - mCenterY) * ratio
+        updateJoystickPosition(newX, newY)
+    }
+
+    // 조이스틱 위치 업데이트 함수
+    private fun updateJoystickPosition(newX: Float, newY: Float) {
+        mPosX = newX
+        mPosY = newY
+        // 화면 다시 그리기 요청
+        invalidate()
     }
 
     // 상수 및 태그
