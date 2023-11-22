@@ -1,11 +1,12 @@
 package com.three.green_defense_force.models
 
-data class GameModel(
+data class Game(
     val userId: String,
+    val userLevel: Int,
     val nickname: String,
     val ticketAmount: Int,
     val coinAmount: Int,
-    val userLevel: Int,
     val bonusCoin: Int,
-    val monsterImages: List<String>,
+    val monsterPreviews: List<MonsterPreview>,
+    val characterImages: List<String>,
 )
