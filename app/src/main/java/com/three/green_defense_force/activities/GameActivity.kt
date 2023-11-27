@@ -28,7 +28,8 @@ class GameActivity : AppCompatActivity() {
 
     private var screenWidth: Int = 0
     private var screenHeight: Int = 0
-    private var isStop = false
+    private var walkingCounter: Int = 0
+    private var isStop: Boolean = false
 
     // 이전 각도, 이미지 저장하는 변수
     private var prevAngle: Int = 0
@@ -43,9 +44,10 @@ class GameActivity : AppCompatActivity() {
 
     // 상수
     private val COLOR_GREEN = R.color.green
-    private val MOVE_FACTOR = 0.2f
+    private val MOVE_FACTOR = 0.25f
     private val MONSTER_SIZE = 70
     private val COIN_SIZE = 30
+    private val WALKING_SPEED = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -174,7 +176,8 @@ class GameActivity : AppCompatActivity() {
     /** 캐릭터 걷는 동작 설정하는 함수 */
     private fun getWalkingImage(image1: String, image2: String): String {
         // 번갈아 가며 이미지 반환
-        return if (System.currentTimeMillis() % 1000 < 500) image1 else image2
+        walkingCounter = (walkingCounter + 1) % WALKING_SPEED
+        return if (walkingCounter < 5) image1 else image2
     }
 
     /** 이전 상태 방향의 기본 이미지 반환하는 함수 */
@@ -298,6 +301,8 @@ class GameActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
 
+                gameViewModel.handleTicketIntersect(gameModel)
+                setTicketAmount(gameModel.ticketAmount)
                 monsterView.visibility = View.GONE
                 monsterViews.remove(monsterView)
                 break

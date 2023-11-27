@@ -4,7 +4,7 @@ data class Game(
     val userId: String,
     val userLevel: Int,
     val nickname: String,
-    val ticketAmount: Int,
+    var ticketAmount: Int,
     var coinAmount: Int,
     val bonusCoin: Int,
     val monsterPreviews: List<MonsterPreview>,

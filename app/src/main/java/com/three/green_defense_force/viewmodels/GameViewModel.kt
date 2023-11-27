@@ -56,4 +56,9 @@ class GameViewModel : ViewModel() {
     fun handleCoinIntersect(game: Game) {
         game.coinAmount += 1
     }
+
+    /** 서버에 변경된 티켓 정보를 전달하는 함수 */
+    fun handleTicketIntersect(game: Game) {
+        game.ticketAmount -= 1
+    }
 }
