@@ -42,6 +42,13 @@
         app:layout_constraintHeight_percent="0.8"
         app:layout_constraintTop_toBottomOf="@+id/challenge_title">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/challenge_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="30sp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
