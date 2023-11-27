@@ -24,7 +24,6 @@
             android:id="@+id/charImageView"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:src="@drawable/game_char_down"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,12 +106,12 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:background="@android:color/transparent"
-            android:fontFamily="@font/applesdgothicneoul"
+            android:fontFamily="@font/neodgm"
             android:letterSpacing="0.1"
             android:text="Back"
-            android:textSize="20dp"
+            android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
