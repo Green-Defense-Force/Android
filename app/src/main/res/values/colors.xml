@@ -8,4 +8,12 @@
     <color name="green">#FF6C9338</color>
     <color name="grass">#FF729F33</color>
     <color name="transparent">#66FFFFFF</color>
+
+    <color name="navi_bottom">#FFC3C3C3</color>
+    <color name="main_top">#FF68C8FF</color>
+    <color name="challenge_top">#FF609C24</color>
+    <color name="challenge_main">#FF52851F</color>
+    <color name="plogging_top">#FF4D85DA</color>
+    <color name="plogging_main">#804D85DA</color>
+    <color name="plogging_dialog">#FF0059C1</color>
 </resources>
