@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/plogging_dialog_start"
+        android:layout_width="330dp"
+        android:layout_height="190dp"
+        android:src="@drawable/dialog_plogging_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="322dp"
+        android:layout_height="182dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/plogging_dialog_start"
+        app:layout_constraintEnd_toEndOf="@+id/plogging_dialog_start"
+        app:layout_constraintStart_toStartOf="@+id/plogging_dialog_start"
+        app:layout_constraintTop_toTopOf="@+id/plogging_dialog_start">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/plogging_dialog_topbar"
+            android:layout_width="322dp"
+            android:layout_height="32dp"
+            android:background="@color/plogging_dialog">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/w95fa"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:text="Plogging"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/plogging_dialog_close"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/dialog_close_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/neodgm"
+            android:text="플로깅하러 돌아갈까요?"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/plogging_retake_btn"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/dialog_plogging_btn"
+                android:fontFamily="@font/neodgm"
+                android:text="재촬영"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/plogging_goback_btn"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/dialog_plogging_btn"
+                android:fontFamily="@font/neodgm"
+                android:text="돌아가기"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

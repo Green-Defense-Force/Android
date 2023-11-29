@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Greendefenseforce" parent="Theme.AppCompat.Light">
+    <style name="Base.Theme.Greendefenseforce" parent="Theme.MaterialComponents.Light.Bridge">
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>

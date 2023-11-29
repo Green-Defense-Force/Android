@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,28 +8,119 @@
     android:orientation="vertical"
     tools:context=".fragments.HomeFragment">
 
-    <Button
-        android:id="@+id/startBtn"
-        android:layout_width="190dp"
-        android:layout_height="65dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/btn_skyblue_radius"
-        android:fontFamily="@font/applesdgothicneoul"
-        android:gravity="center"
-        android:text="게임 시작"
-        android:textColor="#1E6197"
-        android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main_bg" />
 
-    <Button
-        android:id="@+id/startDetailBtn"
-        android:layout_width="190dp"
-        android:layout_height="65dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/btn_skyblue_radius"
-        android:fontFamily="@font/applesdgothicneoul"
+    <LinearLayout
+        android:id="@+id/gameIconView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="50dp"
         android:gravity="center"
-        android:text="포켓몬 시작"
-        android:textColor="#1E6197"
-        android:textSize="20sp" />
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/gameBtn"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/main_game_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/w95fa"
+            android:text="Game"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/storeIconView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameIconView">
+
+        <Button
+            android:id="@+id/storeBtn"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/main_store_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/w95fa"
+            android:text="Store"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inventoryIconView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storeIconView">
+
+        <Button
+            android:id="@+id/inventoryBtn"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/main_inventory_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/w95fa"
+            android:text="Inventory"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mypageIconView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryIconView">
+
+        <Button
+            android:id="@+id/mypageBtn"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/main_mypage_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/w95fa"
+            android:text="My page"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

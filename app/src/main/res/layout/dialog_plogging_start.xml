@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/plogging_dialog_start"
+        android:layout_width="330dp"
+        android:layout_height="190dp"
+        android:src="@drawable/dialog_plogging_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="322dp"
+        android:layout_height="182dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/plogging_dialog_start"
+        app:layout_constraintEnd_toEndOf="@+id/plogging_dialog_start"
+        app:layout_constraintStart_toStartOf="@+id/plogging_dialog_start"
+        app:layout_constraintTop_toTopOf="@+id/plogging_dialog_start">
+
+        <TextView
+            android:layout_width="322dp"
+            android:layout_height="32dp"
+            android:background="@color/plogging_dialog"
+            android:fontFamily="@font/w95fa"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="Plogging"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/neodgm"
+            android:text="플로깅을 시작할까요?"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/neodgm"
+            android:text="플로깅은 쓰레기를 주우며 조깅하는 행위입니다."
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/plogging_start_btn"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/dialog_plogging_btn"
+            android:fontFamily="@font/neodgm"
+            android:text="시작하기"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

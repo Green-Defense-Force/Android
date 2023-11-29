@@ -7,23 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import com.three.green_defense_force.R
 import com.three.green_defense_force.activities.GameActivity
 import com.three.green_defense_force.activities.GameDetailActivity
 
 class HomeFragment : Fragment() {
+    private val COLOR_MAIN_TOP = R.color.main_top
+    private val COLOR_NAVI_BOTTOM = R.color.navi_bottom
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val startBtn: Button = view.findViewById(R.id.startBtn)
-        startBtn.setOnClickListener {
-            val intent = Intent(activity, GameActivity::class.java)
-            startActivity(intent)
-        }
+        setBarColor()
 
-        val startDetailBtn: Button = view.findViewById(R.id.startDetailBtn)
-        startDetailBtn.setOnClickListener {
-            val intent = Intent(activity, GameDetailActivity::class.java)
+        val gameBtn: Button = view.findViewById(R.id.gameBtn)
+        gameBtn.setOnClickListener {
+            val intent = Intent(activity, GameActivity::class.java)
             startActivity(intent)
         }
     }
@@ -37,5 +37,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    /** 상태바 및 하단바 색상 지정하는 함수 */
+    private fun setBarColor() {
+        val window = requireActivity().window
+        val context = requireContext()
+        window.statusBarColor = ContextCompat.getColor(context, COLOR_MAIN_TOP)
+        window.navigationBarColor = ContextCompat.getColor(context, COLOR_NAVI_BOTTOM)
     }
 }
