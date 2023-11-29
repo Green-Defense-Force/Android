@@ -29,14 +29,14 @@ class ChallengeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_challenge, container, false)
 
         // RecyclerView 설정
-        val recyclerView: RecyclerView = view.findViewById(R.id.challenge_recycler_view)
+        val recyclerView: RecyclerView = view.findViewById(R.id.challengeRecyclerView)
 
         // ChallengeViewModel을 사용하여 데이터 가져오기
         val challengeViewModel = ChallengeViewModel()
         val challengeData = challengeViewModel.fetchChallengeData("6uiaYtLh")
 
         // Adapter에 가져온 데이터 설정
-        val challengeAdapter = ChallengeAdapter(challengeData.challengePreviews)
+        val challengeAdapter = ChallengeAdapter(requireContext(), challengeData.challengePreviews)
         recyclerView.adapter = challengeAdapter
 
         // RecyclerView의 레이아웃 매니저 설정

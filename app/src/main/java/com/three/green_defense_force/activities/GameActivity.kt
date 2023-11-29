@@ -12,6 +12,8 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.three.green_defense_force.R
+import com.three.green_defense_force.extensions.setBackButton
+import com.three.green_defense_force.extensions.setBarColor
 import com.three.green_defense_force.models.Game
 import com.three.green_defense_force.models.MonsterPreview
 import com.three.green_defense_force.viewmodels.GameViewModel
@@ -53,8 +55,8 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        setBarColor()
-        setBackButton()
+        setBarColor(COLOR_GREEN, COLOR_GREEN)
+        setBackButton(R.id.backBtn)
 
         screenWidth = resources.displayMetrics.widthPixels
         screenHeight = resources.displayMetrics.heightPixels
@@ -92,12 +94,6 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    /** 상태바 및 하단바 색상 지정하는 함수 */
-    private fun setBarColor() {
-        window.statusBarColor = getColor(COLOR_GREEN)
-        window.navigationBarColor = getColor(COLOR_GREEN)
-    }
-
     /** dp → px 변환하는 함수 */
     private fun dpToPx(dp: Int): Int {
         val density = resources.displayMetrics.density
@@ -110,14 +106,6 @@ class GameActivity : AppCompatActivity() {
             .load(url)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)
-    }
-
-    /** 뒤로 가기 버튼 설정하는 함수 */
-    private fun setBackButton() {
-        val backBtn: Button = findViewById(R.id.backBtn)
-        backBtn.setOnClickListener {
-            finish()
-        }
     }
 
     /** 조이스틱 버튼 설정하는 함수 */

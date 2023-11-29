@@ -8,44 +8,44 @@ class ChallengeViewModel {
     fun fetchChallengeData(userId: String): Challenge {
         val challengePreviews = listOf(
             ChallengePreview(
-                1,
+                "1",
                 "페트병 분리 배출하기",
-                "https://github.com/1three/1three-green-defense-force-image-api/blob/main/images/game_ticket.png?raw=true",
+                "ticket",
                 1,
                 false
             ),
             ChallengePreview(
-                2,
+                "2",
                 "카페에서 텀블러 사용하기",
-                "https://github.com/1three/1three-green-defense-force-image-api/blob/main/images/game_ticket.png?raw=true",
+                "ticket",
                 1,
                 false
             ),
             ChallengePreview(
-                3,
+                "3",
                 "카페 빨대 사용하지 않기",
-                "https://github.com/1three/1three-green-defense-force-image-api/blob/main/images/game_ticket.png?raw=true",
+                "ticket",
                 1,
                 false
             ),
             ChallengePreview(
-                4,
+                "4",
                 "(플로깅) 쓰레기 5개 줍기",
-                "https://github.com/1three/1three-green-defense-force-image-api/blob/main/images/game_coin.png?raw=true",
+                "coin",
                 10,
                 false
             ),
             ChallengePreview(
-                5,
+                "5",
                 "대중교통(버스) 이용하기",
-                "https://github.com/1three/1three-green-defense-force-image-api/blob/main/images/game_ticket.png?raw=true",
+                "ticket",
                 1,
                 false
             ),
             ChallengePreview(
-                6,
+                "6",
                 "카카오톡 친구 초대하기",
-                "https://github.com/1three/1three-green-defense-force-image-api/blob/main/images/game_coin.png?raw=true",
+                "coin",
                 20,
                 false
             ),
