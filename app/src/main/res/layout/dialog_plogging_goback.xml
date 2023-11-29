@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/plogging_dialog_start"
+        android:id="@+id/ploggingDialogStart"
         android:layout_width="330dp"
         android:layout_height="190dp"
         android:src="@drawable/dialog_plogging_bg"
@@ -18,13 +18,13 @@
         android:layout_width="322dp"
         android:layout_height="182dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/plogging_dialog_start"
-        app:layout_constraintEnd_toEndOf="@+id/plogging_dialog_start"
-        app:layout_constraintStart_toStartOf="@+id/plogging_dialog_start"
-        app:layout_constraintTop_toTopOf="@+id/plogging_dialog_start">
+        app:layout_constraintBottom_toBottomOf="@+id/ploggingDialogStart"
+        app:layout_constraintEnd_toEndOf="@+id/ploggingDialogStart"
+        app:layout_constraintStart_toStartOf="@+id/ploggingDialogStart"
+        app:layout_constraintTop_toTopOf="@+id/ploggingDialogStart">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/plogging_dialog_topbar"
+            android:id="@+id/ploggingDialogTopbar"
             android:layout_width="322dp"
             android:layout_height="32dp"
             android:background="@color/plogging_dialog">
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/plogging_dialog_close"
+                android:id="@+id/ploggingDialogClose"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginRight="5dp"
@@ -72,7 +72,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/plogging_retake_btn"
+                android:id="@+id/ploggingRetakeBtn"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -83,7 +83,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/plogging_goback_btn"
+                android:id="@+id/ploggingGobackBtn"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

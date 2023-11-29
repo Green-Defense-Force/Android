@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/plogging_dialog_start"
+        android:id="@+id/ploggingDialogStart"
         android:layout_width="330dp"
         android:layout_height="190dp"
         android:src="@drawable/dialog_plogging_bg"
@@ -18,10 +18,10 @@
         android:layout_width="322dp"
         android:layout_height="182dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/plogging_dialog_start"
-        app:layout_constraintEnd_toEndOf="@+id/plogging_dialog_start"
-        app:layout_constraintStart_toStartOf="@+id/plogging_dialog_start"
-        app:layout_constraintTop_toTopOf="@+id/plogging_dialog_start">
+        app:layout_constraintBottom_toBottomOf="@+id/ploggingDialogStart"
+        app:layout_constraintEnd_toEndOf="@+id/ploggingDialogStart"
+        app:layout_constraintStart_toStartOf="@+id/ploggingDialogStart"
+        app:layout_constraintTop_toTopOf="@+id/ploggingDialogStart">
 
         <TextView
             android:layout_width="322dp"
@@ -54,7 +54,7 @@
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/plogging_start_btn"
+            android:id="@+id/ploggingStartBtn"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

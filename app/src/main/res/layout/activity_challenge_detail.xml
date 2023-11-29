@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ChallengeDetailActivity">
+
+    <LinearLayout
+        android:id="@+id/challengeTopbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/challenge_top"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.18"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/challengeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/neodgm"
+            android:text="챌린제 제목"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/rewardContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/neodgm"
+            android:text="보상 내용"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/challenge_main"
+        app:layout_constraintHeight_percent="0.82"
+        app:layout_constraintTop_toBottomOf="@+id/challengeTopbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/recycler_view_item_border_1"
+                android:orientation="vertical"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="25dp">
+
+                <TextView
+                    android:id="@+id/challengeContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/neodgm"
+                    android:lineSpacingExtra="12dp"
+                    android:text="챌린지 본문"
+                    android:textColor="@color/brown"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/challengeGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/neodgm"
+                    android:lineSpacingExtra="12dp"
+                    android:text="챌린지 목표"
+                    android:textColor="@color/brown"
+                    android:textSize="12dp" />
+
+                <LinearLayout
+                    android:id="@+id/exampleContainter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/neodgm"
+                            android:gravity="center"
+                            android:text="올바른 예시"
+                            android:textColor="@color/brown"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/challengeCorrectExample"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginTop="15dp"
+                            android:scaleType="centerCrop"
+                            android:text="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/neodgm"
+                            android:gravity="center"
+                            android:text="틀린 예시"
+                            android:textColor="@color/brown"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/challengeWrongExample"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginTop="15dp"
+                            android:scaleType="centerCrop"
+                            android:text="1" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/challengeChecklist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/neodgm"
+                    android:lineSpacingExtra="12dp"
+                    android:text="챌린지 체크리스트"
+                    android:textColor="@color/brown"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="60dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/backBtn"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:background="@drawable/challenge_btn"
+                    android:fontFamily="@font/neodgm"
+                    android:text="뒤로가기"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/takeBtn"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:background="@drawable/challenge_btn"
+                    android:fontFamily="@font/neodgm"
+                    android:text="촬영하기"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

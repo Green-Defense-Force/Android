@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.three.green_defense_force.customviews.CustomButton
 import com.three.green_defense_force.R
+import com.three.green_defense_force.extensions.setBackButton
+import com.three.green_defense_force.extensions.setBarColor
 import com.three.green_defense_force.models.GameDetail
 import com.three.green_defense_force.viewmodels.GameDetailViewModel
 
@@ -48,8 +50,8 @@ class GameDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_detail)
 
-        setBarColor()
-        setBackButton()
+        setBarColor(COLOR_SKY, COLOR_GRASS)
+        setBackButton(R.id.backBtn)
 
         val userId = intent.getStringExtra("USER_ID")
         val monsterId = intent.getStringExtra("MONSTER_ID")
@@ -85,20 +87,6 @@ class GameDetailActivity : AppCompatActivity() {
 
         setAttackButton()
         setMonster(gameDetailModel)
-    }
-
-    /** 상태바 및 하단바 색상 지정하는 함수 */
-    private fun setBarColor() {
-        window.statusBarColor = getColor(COLOR_SKY)
-        window.navigationBarColor = getColor(COLOR_GRASS)
-    }
-
-    /** 뒤로 가기 버튼 설정 */
-    private fun setBackButton() {
-        val backBtn: Button = findViewById(R.id.backBtn)
-        backBtn.setOnClickListener {
-            finish()
-        }
     }
 
     /** URL → 이미지 변환하는 함수 */

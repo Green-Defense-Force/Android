@@ -7,7 +7,7 @@
     tools:context=".fragments.PloggingFragment">
 
     <LinearLayout
-        android:id="@+id/plogging_title"
+        android:id="@+id/ploggingTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/plogging_top"
@@ -40,7 +40,7 @@
         android:background="@color/plogging_main"
         android:orientation="vertical"
         app:layout_constraintHeight_percent="0.8"
-        app:layout_constraintTop_toBottomOf="@+id/plogging_title">
+        app:layout_constraintTop_toBottomOf="@+id/ploggingTitle">
 
     </LinearLayout>
 

@@ -24,10 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigationView = findViewById(R.id.bottom_nav_view)
-        btnChallenge = findViewById(R.id.nav_challenge)
-        btnHome = findViewById(R.id.nav_home)
-        btnPlogging = findViewById(R.id.nav_plogging)
+        bottomNavigationView = findViewById(R.id.bottomNavView)
+        btnChallenge = findViewById(R.id.navChallenge)
+        btnHome = findViewById(R.id.navHome)
+        btnPlogging = findViewById(R.id.navPlogging)
 
         // 초기 화면 : HomeFragment
         replaceFragment(homeFragment)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.bottom_nav_fragment, fragment)
+            .replace(R.id.bottomNavFragment, fragment)
             .commit()
     }
 }
