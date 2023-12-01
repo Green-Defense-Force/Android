@@ -15,7 +15,9 @@
     <color name="main_top">#FF68C8FF</color>
     <color name="challenge_top">#FF609C24</color>
     <color name="challenge_main">#FF52851F</color>
+    <color name="challenge_dialog">#FF3C2B00</color>
     <color name="plogging_top">#FF4D85DA</color>
     <color name="plogging_main">#804D85DA</color>
     <color name="plogging_dialog">#FF0059C1</color>
+    <color name="dialog_background">#66000000</color>
 </resources>

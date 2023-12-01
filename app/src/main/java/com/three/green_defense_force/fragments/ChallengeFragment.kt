@@ -15,6 +15,7 @@ import com.three.green_defense_force.viewmodels.ChallengeViewModel
 class ChallengeFragment : Fragment() {
     private val COLOR_CHALLENGE_TOP = R.color.challenge_top
     private val COLOR_NAVI_BOTTOM = R.color.navi_bottom
+    private val TEMP_USER_ID = "6uiaYtLh"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +34,10 @@ class ChallengeFragment : Fragment() {
 
         // ChallengeViewModel을 사용하여 데이터 가져오기
         val challengeViewModel = ChallengeViewModel()
-        val challengeData = challengeViewModel.fetchChallengeData("6uiaYtLh")
+        val challengeData = challengeViewModel.fetchChallengeData(TEMP_USER_ID)
 
         // Adapter에 가져온 데이터 설정
-        val challengeAdapter = ChallengeAdapter(requireContext(), challengeData.challengePreviews)
+        val challengeAdapter = ChallengeAdapter(requireContext(), TEMP_USER_ID, challengeData.challengePreviews)
         recyclerView.adapter = challengeAdapter
 
         // RecyclerView의 레이아웃 매니저 설정
