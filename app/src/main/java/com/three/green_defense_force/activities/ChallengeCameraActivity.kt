@@ -1,6 +1,7 @@
 package com.three.green_defense_force.activities
 
 import android.app.Dialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -295,6 +296,10 @@ class ChallengeCameraActivity : AppCompatActivity() {
 
     /** ChallengeFragment 이동하는 함수 */
     private fun naviToChallengeFragment() {
-
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.putExtra("openChallengeFragment", true)
+        startActivity(intent)
+        finish()
     }
 }
