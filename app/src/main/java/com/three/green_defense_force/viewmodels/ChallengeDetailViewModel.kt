@@ -71,13 +71,13 @@ class ChallengeDetailViewModel {
             }
 
             else -> {
-                challengeTitle = ""
-                challengeContent = ""
-                challengeGoal = ""
+                challengeTitle = "챌린지 제목"
+                challengeContent = "챌린지 본문"
+                challengeGoal = "챌린지 목표"
                 challengeCorrectExample = ""
                 challengeWrongExample = ""
-                challengeChecklist = ""
-                rewardType = ""
+                challengeChecklist = "챌린지 체크리스트"
+                rewardType = "보상 종류"
                 rewardCount = 0
             }
         }
