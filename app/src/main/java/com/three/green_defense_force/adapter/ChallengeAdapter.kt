@@ -12,7 +12,11 @@ import com.three.green_defense_force.R
 import com.three.green_defense_force.activities.ChallengeDetailActivity
 import com.three.green_defense_force.models.ChallengePreview
 
-class ChallengeAdapter(private val context: Context, private val userId: String, private val challenges: List<ChallengePreview>) :
+class ChallengeAdapter(
+    private val context: Context,
+    private val userId: String,
+    private val challenges: List<ChallengePreview>
+) :
     RecyclerView.Adapter<ChallengeAdapter.ChallengeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeViewHolder {

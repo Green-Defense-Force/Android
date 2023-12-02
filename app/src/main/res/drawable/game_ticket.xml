@@ -3,76 +3,28 @@
     android:height="32.35294dp"
     android:viewportWidth="850"
     android:viewportHeight="550">
-    <path
-        android:fillColor="#FAEF36"
-        android:pathData="M50,50h750v450h-750z" />
-    <path
-        android:fillColor="#DCCA25"
-        android:pathData="M200,150H50V300H200V150Z" />
-    <path
-        android:fillColor="#DCCA25"
-        android:pathData="M800,150H650V300H800V150Z" />
-    <path
-        android:fillColor="#BA8A2E"
-        android:pathData="M50,350V400L800,400V350L50,350Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M50,50H0V500H50V50Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M100,100H0V150H100V100Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M100,200H0V250H100V200Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M100,300H0V350H100V300Z" />
-    <path
-        android:fillColor="#D9C825"
-        android:pathData="M200,400H50V500H200V400Z" />
-    <path
-        android:fillColor="#D9C825"
-        android:pathData="M800,400H650V500H800V400Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M100,400H0V450H100V400Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M850,100H750V150H850V100Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M850,200H750V250H850V200Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M850,300H750V350H850V300Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M850,400H750V450H850V400Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M850,50H800V500H850V50Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M50,0V50L800,50V0L50,0Z" />
-    <path
-        android:fillColor="#1F1F1F"
-        android:pathData="M50,500V550H800V500L50,500Z" />
-    <path
-        android:fillColor="#FDF38E"
-        android:pathData="M650,450H200V500H650V450Z" />
-    <path
-        android:fillColor="#FDF38E"
-        android:pathData="M650,50H200V100H650V50Z" />
-    <path
-        android:fillColor="#FDF38E"
-        android:pathData="M200,100H100V150H200V100Z" />
-    <path
-        android:fillColor="#FDF38E"
-        android:pathData="M750,100H650V150H750V100Z" />
-    <path
-        android:fillColor="#FFFAC5"
-        android:pathData="M650,100H550V300H650V100Z" />
-    <path
-        android:fillColor="#FFFAC5"
-        android:pathData="M700,150H500V250H700V150Z" />
+    <path  android:fillColor="#FAEF36"  android:pathData="M50,50h750v450h-750z" />
+    <path  android:fillColor="#DCCA25"  android:pathData="M200,150H50V300H200V150Z" />
+    <path  android:fillColor="#DCCA25"  android:pathData="M800,150H650V300H800V150Z" />
+    <path  android:fillColor="#BA8A2E"  android:pathData="M50,350V400L800,400V350L50,350Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M50,50H0V500H50V50Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M100,100H0V150H100V100Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M100,200H0V250H100V200Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M100,300H0V350H100V300Z" />
+    <path  android:fillColor="#D9C825"  android:pathData="M200,400H50V500H200V400Z" />
+    <path  android:fillColor="#D9C825"  android:pathData="M800,400H650V500H800V400Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M100,400H0V450H100V400Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M850,100H750V150H850V100Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M850,200H750V250H850V200Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M850,300H750V350H850V300Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M850,400H750V450H850V400Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M850,50H800V500H850V50Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M50,0V50L800,50V0L50,0Z" />
+    <path  android:fillColor="#1F1F1F"  android:pathData="M50,500V550H800V500L50,500Z" />
+    <path  android:fillColor="#FDF38E"  android:pathData="M650,450H200V500H650V450Z" />
+    <path  android:fillColor="#FDF38E"  android:pathData="M650,50H200V100H650V50Z" />
+    <path  android:fillColor="#FDF38E"  android:pathData="M200,100H100V150H200V100Z" />
+    <path  android:fillColor="#FDF38E"  android:pathData="M750,100H650V150H750V100Z" />
+    <path  android:fillColor="#FFFAC5"  android:pathData="M650,100H550V300H650V100Z" />
+    <path  android:fillColor="#FFFAC5"  android:pathData="M700,150H500V250H700V150Z" />
 </vector>
