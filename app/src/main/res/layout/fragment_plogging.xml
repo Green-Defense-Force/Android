@@ -6,42 +6,110 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PloggingFragment">
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ploggingTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:background="@color/plogging_top"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintHeight_percent="0.2"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/neodgm"-->
+<!--                    android:text="플로깅"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="35sp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:fontFamily="@font/neodgm"-->
+<!--                    android:text="Plogging : 쓰레기를 주우며 조깅"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--    </LinearLayout>-->
+
     <LinearLayout
-        android:id="@+id/ploggingTitle"
+        android:id="@+id/ploggingTimeContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/plogging_top"
+        android:background="@drawable/plogging_gradient_bg"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/ploggingTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/neodgm"
-            android:text="플로깅"
+            android:text="00:00:00"
             android:textColor="@color/white"
-            android:textSize="35sp" />
+            android:textSize="70sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/neodgm"
-            android:text="Plogging : 쓰레기를 주우며 조깅"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/plogging_main"
-        android:orientation="vertical"
-        app:layout_constraintHeight_percent="0.8"
-        app:layout_constraintTop_toBottomOf="@+id/ploggingTitle">
+        android:layout_height="90dp"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/stopBtn"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/plogging_side_btn"
+            android:fontFamily="@font/neodgm"
+            android:text="종료하기"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/ploggingBtn"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/plogging_start_btn" />
+
+        <Button
+            android:id="@+id/takeBtn"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/plogging_side_btn"
+            android:fontFamily="@font/neodgm"
+            android:text="촬영하기"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/disableView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:background="@color/plogging_main"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintHeight_percent="0.8"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ploggingTitle">-->
+
+    <!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
