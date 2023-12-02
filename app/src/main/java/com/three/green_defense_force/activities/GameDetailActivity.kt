@@ -1,7 +1,6 @@
 package com.three.green_defense_force.activities
 
 import android.app.AlertDialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent

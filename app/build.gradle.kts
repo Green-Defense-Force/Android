@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.three.green_defense_force"
-        minSdk = 28
+        minSdk = 24
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +48,12 @@ android {
 }
 
 dependencies {
+    val camerax_version = "1.3.0-alpha04"
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation("androidx.camera:camera-view:${camerax_version}")
+    implementation ("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
     implementation(project(":joystick"))
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.core:core-ktx:1.9.0")

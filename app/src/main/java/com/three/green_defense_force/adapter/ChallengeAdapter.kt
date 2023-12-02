@@ -12,7 +12,7 @@ import com.three.green_defense_force.R
 import com.three.green_defense_force.activities.ChallengeDetailActivity
 import com.three.green_defense_force.models.ChallengePreview
 
-class ChallengeAdapter(private val context: Context, private val challenges: List<ChallengePreview>) :
+class ChallengeAdapter(private val context: Context, private val userId: String, private val challenges: List<ChallengePreview>) :
     RecyclerView.Adapter<ChallengeAdapter.ChallengeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeViewHolder {
@@ -41,8 +41,10 @@ class ChallengeAdapter(private val context: Context, private val challenges: Lis
 
         // 각 아이템 클릭 이벤트
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ChallengeDetailActivity::class.java)
-            intent.putExtra("CHALLENGE_ID", challenge.challengeId)
+            val intent = Intent(context, ChallengeDetailActivity::class.java).apply {
+                putExtra("USER_ID", userId)
+                putExtra("CHALLENGE_ID", challenge.challengeId)
+            }
             context.startActivity(intent)
         }
     }

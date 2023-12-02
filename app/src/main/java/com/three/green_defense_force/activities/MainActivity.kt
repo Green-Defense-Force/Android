@@ -45,6 +45,13 @@ class MainActivity : AppCompatActivity() {
 
         // 홈 탭 : 기본 선택
         btnHome.isSelected = true
+
+        // ChallengeFragment 열도록 지시
+        if (intent.getBooleanExtra("openChallengeFragment", false)) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.challengeFragment, ChallengeFragment())
+            transaction.commit()
+        }
     }
 
     private fun selectFragment(fragment: Fragment) {

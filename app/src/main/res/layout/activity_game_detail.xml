@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/game_bg_3" />
+        android:src="@drawable/game_detail_bg" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,7 +77,6 @@
             android:layout_height="160dp"
             android:layout_marginTop="70dp"
             android:layout_marginRight="20dp"
-            android:src="@drawable/game_garbage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,7 +104,7 @@
     <com.three.green_defense_force.customviews.CustomButton
         android:id="@+id/attackBtn"
         android:layout_width="160dp"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:layout_margin="30dp"
         android:background="@drawable/game_btn_before"
         app:layout_constraintBottom_toBottomOf="parent"

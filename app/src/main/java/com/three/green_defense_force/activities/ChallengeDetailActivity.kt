@@ -31,7 +31,7 @@ class ChallengeDetailActivity : AppCompatActivity() {
         setBarColor(COLOR_CHALLENGE_TOP, COLOR_CHALLENGE_MAIN)
         setBackButton(R.id.backBtn)
 
-        // challengeId 받아오기
+        val userId = intent.getStringExtra("USER_ID")
         val challengeId = intent.getStringExtra("CHALLENGE_ID")
 
         challengeDetailViewModel = ChallengeDetailViewModel()
@@ -55,12 +55,13 @@ class ChallengeDetailActivity : AppCompatActivity() {
         val takeBtn: Button = findViewById(R.id.takeBtn)
         takeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeCameraActivity::class.java).apply {
+                putExtra("USER_ID", userId)
                 putExtra("CHALLENGE_ID", challengeId)
                 putExtra("CHALLENGE_TITLE", challengeDetailModel.challengeTitle)
                 putExtra("REWARD_TYPE", challengeDetailModel.rewardType)
                 putExtra("REWARD_COUNT", challengeDetailModel.rewardCount)
             }
-            startActivity(intent)
+             startActivity(intent)
         }
     }
 
