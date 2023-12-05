@@ -1,16 +1,15 @@
 package com.three.green_defense_force.fragments
 
 import android.Manifest
-import android.app.Dialog
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -18,8 +17,11 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Polyline
+import com.google.android.gms.maps.model.PolylineOptions
 import com.three.green_defense_force.R
 import com.three.green_defense_force.databinding.FragmentPloggingBinding
 
@@ -29,15 +31,21 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap // 지도
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient // 위치
 
+    private var isDialogShown = false
     private var isPause = true
     private var pauseOffset: Long = 0
 
-    private val COLOR_PLOGGING_TOP = R.color.plogging_top
-    private val COLOR_NAVI_BOTTOM = R.color.navi_bottom
+    // 이동 경로
+    private lateinit var polyline: Polyline
+    private val pathPoints = mutableListOf<LatLng>()
+
+    // 업데이트 핸들러
+    private val handler = Handler(Looper.getMainLooper())
+    private val updateInterval = 5000L
+    private var userZoomLevel: Float = 15f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setBarColor()
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
     }
@@ -49,8 +57,6 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         // Fragment의 데이터 바인딩
         binding = FragmentPloggingBinding.inflate(inflater, container, false)
-
-        var rootView = binding.root
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync(this)
 
@@ -60,7 +66,10 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
         binding.takeBtn.visibility = View.INVISIBLE
 
         // 다이얼로그 띄우기
-        showStartDialog()
+        if (!isDialogShown) {
+            showStartDialog()
+            isDialogShown = true
+        }
 
         // 플로깅 리스너 설정
         binding.ploggingBtn.setOnClickListener {
@@ -77,7 +86,42 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
             endPlogging()
         }
 
-        return rootView
+        return binding.root
+    }
+
+    /** 지도 사용 가능 시 자동 호출하는 함수*/
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map
+        polyline = googleMap.addPolyline(
+            PolylineOptions().color(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.polyline_color
+                )
+            ).width(10f)
+        )
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    val latLng = LatLng(location.latitude, location.longitude)
+                    map.apply {
+                        addMarker(MarkerOptions().position(latLng).title("현재 위치"))
+                        moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, userZoomLevel))
+                    }
+                }
+            }
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                1
+            )
+        }
     }
 
     /** 플로깅 시작, 재시작 함수*/
@@ -87,6 +131,7 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
         binding.takeBtn.visibility = View.INVISIBLE
         binding.timer.base = SystemClock.elapsedRealtime() - pauseOffset
         binding.timer.start()
+        startUpdatingPolyline()
     }
 
     /** 플로깅 일시 중지 함수 */
@@ -107,55 +152,37 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
         pauseOffset = 0
         binding.timer.stop()
         isPause = true
+
+        pathPoints.clear()
+        handler.removeCallbacksAndMessages(null)
+        googleMap.clear()
+
+        // 플로깅 재시작
+        refreshMap()
+        binding.timerContainer.visibility = View.INVISIBLE
+        binding.ploggingTitleContainer.visibility = View.VISIBLE
+        binding.disableView.visibility = View.VISIBLE
+        showStartDialog()
     }
 
     /** 플로깅 시작 다이얼로그 띄우는 함수 */
     private fun showStartDialog() {
-        val dialog = createDialog(R.layout.dialog_plogging_start)
-        val startBtn = dialog.findViewById<Button>(R.id.ploggingStartBtn)
-
-        startBtn.setOnClickListener {
-            refreshMap()
-
-            binding.timerContainer.visibility = View.VISIBLE
-            binding.ploggingTitleContainer.visibility = View.INVISIBLE
-            binding.disableView.visibility = View.INVISIBLE
-
-            dialog.dismiss()
-        }
-
-        dialog.show()
+        val dialogFragment = PloggingStartDialogFragment()
+        dialogFragment.setOnStartClickListener(object :
+            PloggingStartDialogFragment.OnStartClickListener {
+            override fun onStartClicked() {
+                refreshMap()
+                binding.timerContainer.visibility = View.VISIBLE
+                binding.ploggingTitleContainer.visibility = View.INVISIBLE
+                binding.disableView.visibility = View.INVISIBLE
+                isDialogShown = false
+            }
+        })
+        dialogFragment.show(childFragmentManager, "PloggingStartDialogFragment")
     }
 
     /** 지도 재렌더링 함수 */
-    private fun refreshMap() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-                if (location != null) {
-                    val latLng = LatLng(location.latitude, location.longitude)
-                    googleMap.apply {
-                        clear() // 기존 마커 제거
-                        addMarker(MarkerOptions().position(latLng).title("현재 위치"))
-                        moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
-                    }
-                }
-            }
-        }
-    }
-
-    /** 다이얼로그 생성하는 함수 */
-    private fun createDialog(layoutId: Int): Dialog {
-        // this → requireContext()
-        return Dialog(requireContext()).apply {
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setContentView(layoutId)
-            setCancelable(false)
-        }
-    }
-
-    /** 지도 사용 가능 시 자동 호출하는 함수*/
-    override fun onMapReady(map: GoogleMap) {
-        googleMap = map
+    internal fun refreshMap() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -164,19 +191,58 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
             fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     val latLng = LatLng(location.latitude, location.longitude)
-                    map.apply {
+                    pathPoints.add(latLng)
+                    updatePolyline()
+                    googleMap.apply {
+                        clear() // 기존 마커 제거
                         addMarker(MarkerOptions().position(latLng).title("현재 위치"))
-                        moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
+                        addPolyline(
+                            PolylineOptions().color(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.polyline_color
+                                )
+                            ).width(10f).addAll(pathPoints)
+                        )
+                    }
+                    googleMap.setOnCameraMoveListener {
+                        userZoomLevel = googleMap.cameraPosition.zoom
                     }
                 }
             }
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                1
-            )
         }
+    }
+
+    /** 이동 경로 업데이트 시작하는 함숙 */
+    private fun startUpdatingPolyline() {
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                // 일시 중지되지 않은 경우, 업데이트
+                if (!isPause) {
+                    refreshMap()
+                    handler.postDelayed(this, updateInterval)
+                }
+            }
+        }, updateInterval)
+    }
+
+    /** 이동 경로 업데이트 함수 */
+    private fun updatePolyline() {
+        polyline.points = pathPoints
+
+        // 마지막 위치를 기준으로 카메라 시점 업데이트
+        if (pathPoints.isNotEmpty()) {
+            val lastLatLng = pathPoints.last()
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(getCameraPosition(lastLatLng)))
+        }
+    }
+
+    /** 카메라 시점 반환하는 함수 */
+    private fun getCameraPosition(latLng: LatLng): CameraPosition {
+        val builder = CameraPosition.Builder()
+        builder.target(latLng)
+        builder.zoom(userZoomLevel)
+        return builder.build()
     }
 
     // 생명주기 관련 함수
@@ -213,13 +279,5 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView.onDestroy()
-    }
-
-    /** 상태바 및 하단바 색상 지정하는 함수 */
-    private fun setBarColor() {
-        val window = requireActivity().window
-        val context = requireContext()
-        window.statusBarColor = ContextCompat.getColor(context, COLOR_PLOGGING_TOP)
-        window.navigationBarColor = ContextCompat.getColor(context, COLOR_NAVI_BOTTOM)
     }
 }
