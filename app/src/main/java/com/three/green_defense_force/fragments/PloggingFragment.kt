@@ -46,6 +46,7 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setBarColor()
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
     }
@@ -67,8 +68,8 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
 
         // 다이얼로그 띄우기
         if (!isDialogShown) {
-            showStartDialog()
             isDialogShown = true
+            showStartDialog()
         }
 
         // 플로깅 리스너 설정
@@ -279,5 +280,13 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView.onDestroy()
+    }
+
+    /** 상태바 및 하단바 색상 지정하는 함수 */
+    private fun setBarColor() {
+        val window = requireActivity().window
+        val context = requireContext()
+        window.statusBarColor = ContextCompat.getColor(context, R.color.plogging_top)
+        window.navigationBarColor = ContextCompat.getColor(context, R.color.navi_bottom)
     }
 }
