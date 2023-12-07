@@ -13,12 +13,8 @@ import com.three.green_defense_force.activities.GameActivity
 import com.three.green_defense_force.activities.GameDetailActivity
 
 class HomeFragment : Fragment() {
-    private val COLOR_MAIN_TOP = R.color.main_top
-    private val COLOR_NAVI_BOTTOM = R.color.navi_bottom
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setBarColor()
 
         val gameBtn: Button = view.findViewById(R.id.gameBtn)
@@ -43,7 +39,7 @@ class HomeFragment : Fragment() {
     private fun setBarColor() {
         val window = requireActivity().window
         val context = requireContext()
-        window.statusBarColor = ContextCompat.getColor(context, COLOR_MAIN_TOP)
-        window.navigationBarColor = ContextCompat.getColor(context, COLOR_NAVI_BOTTOM)
+        window.statusBarColor = ContextCompat.getColor(context, R.color.main_top)
+        window.navigationBarColor = ContextCompat.getColor(context, R.color.navi_bottom)
     }
 }

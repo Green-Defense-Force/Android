@@ -13,8 +13,6 @@ import com.three.green_defense_force.adapter.ChallengeAdapter
 import com.three.green_defense_force.viewmodels.ChallengeViewModel
 
 class ChallengeFragment : Fragment() {
-    private val COLOR_CHALLENGE_TOP = R.color.challenge_top
-    private val COLOR_NAVI_BOTTOM = R.color.navi_bottom
     private val TEMP_USER_ID = "6uiaYtLh"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +48,7 @@ class ChallengeFragment : Fragment() {
     private fun setBarColor() {
         val window = requireActivity().window
         val context = requireContext()
-        window.statusBarColor = ContextCompat.getColor(context, COLOR_CHALLENGE_TOP)
-        window.navigationBarColor = ContextCompat.getColor(context, COLOR_NAVI_BOTTOM)
+        window.statusBarColor = ContextCompat.getColor(context, R.color.challenge_top)
+        window.navigationBarColor = ContextCompat.getColor(context, R.color.navi_bottom)
     }
 }

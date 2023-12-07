@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.three.green_defense_force.R
 import com.three.green_defense_force.fragments.ChallengeFragment
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val challengeFragment = ChallengeFragment()
     private val ploggingFragment = PloggingFragment()
+    private var activeFragment: Fragment = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +31,10 @@ class MainActivity : AppCompatActivity() {
         btnHome = findViewById(R.id.navHome)
         btnPlogging = findViewById(R.id.navPlogging)
 
-        // 초기 화면 : HomeFragment
-        replaceFragment(homeFragment)
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.bottomNavFragment, challengeFragment, "2").hide(challengeFragment)
+            add(R.id.bottomNavFragment, homeFragment, "1")
+        }.commit()
 
         // 버튼 클릭 리스너 설정
         btnChallenge.setOnClickListener {
@@ -40,22 +44,29 @@ class MainActivity : AppCompatActivity() {
             selectFragment(homeFragment)
         }
         btnPlogging.setOnClickListener {
+            // 최초 버튼 클릭 시 → 플로깅 프래그먼트 추가
+            if (!ploggingFragment.isAdded) {
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.bottomNavFragment, ploggingFragment, "3").hide(ploggingFragment)
+                    .commit()
+            }
             selectFragment(ploggingFragment)
         }
 
         // 홈 탭 : 기본 선택
         btnHome.isSelected = true
-
-        // ChallengeFragment 열도록 지시
-        if (intent.getBooleanExtra("openChallengeFragment", false)) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.challengeFragment, ChallengeFragment())
-            transaction.commit()
-        }
     }
 
     private fun selectFragment(fragment: Fragment) {
-        replaceFragment(fragment)
+        supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment).commit()
+        activeFragment = fragment
+
+        // 선택한 Fragment UI 설정
+        when (fragment) {
+            is ChallengeFragment -> setBarColor(R.color.challenge_top, R.color.navi_bottom)
+            is HomeFragment -> setBarColor(R.color.main_top, R.color.navi_bottom)
+            is PloggingFragment -> setBarColor(R.color.plogging_top, R.color.navi_bottom)
+        }
 
         // 선택한 버튼 스타일 변경
         btnChallenge.setBackgroundResource(
@@ -72,9 +83,10 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.bottomNavFragment, fragment)
-            .commit()
+    private fun setBarColor(statusBarColor: Int, navigationBarColor: Int) {
+        val window = window
+        val context = applicationContext
+        window.statusBarColor = ContextCompat.getColor(context, statusBarColor)
+        window.navigationBarColor = ContextCompat.getColor(context, navigationBarColor)
     }
 }
