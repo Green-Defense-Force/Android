@@ -26,18 +26,22 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.three.green_defense_force.R
 import com.three.green_defense_force.databinding.ActivityChallengeCameraBinding
 import com.three.green_defense_force.extensions.setBackButton
 import com.three.green_defense_force.extensions.setBarColor
+import com.three.green_defense_force.viewmodels.ChallengeCameraViewModel
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class ChallengeCameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChallengeCameraBinding
+
+    private lateinit var viewModel: ChallengeCameraViewModel
     private lateinit var previewView: PreviewView
     private lateinit var cameraBtn: Button
     private lateinit var flashBtn: Button
@@ -63,6 +67,8 @@ class ChallengeCameraActivity : AppCompatActivity() {
 
         setBarColor(COLOR_CHALLENGE_TOP, COLOR_CHALLENGE_TOP)
         setBackButton(R.id.backBtn)
+
+        viewModel = ViewModelProvider(this).get(ChallengeCameraViewModel::class.java)
 
         // (1) 데이터 받아오기
         userId = intent.getStringExtra("USER_ID").toString()
@@ -238,9 +244,8 @@ class ChallengeCameraActivity : AppCompatActivity() {
         challengePicture.setImageBitmap(rotatedBitmap)
 
         okBtn.setOnClickListener {
-            sendImageToServer(userId, challengeId, imageUri)
             dialog.dismiss()
-            showEndDialog()
+            showEndDialog(userId!!, challengeId!!, imageUri!!)
         }
         retakeBtn.setOnClickListener { dialog.dismiss() }
         closeBtn.setOnClickListener { dialog.dismiss() }
@@ -256,7 +261,7 @@ class ChallengeCameraActivity : AppCompatActivity() {
     }
 
     /** 챌린지 종료 다이얼로그 띄우는 함수 */
-    private fun showEndDialog() {
+    private fun showEndDialog(userId: String, challengeId: String, currentImgUri: Uri) {
         val dialog = createDialog(R.layout.dialog_challenge_end)
         val endOkBtn = dialog.findViewById<Button>(R.id.challengeOkBtn)
         val endCloseBtn = dialog.findViewById<Button>(R.id.challengeCloseBtn)
@@ -270,10 +275,12 @@ class ChallengeCameraActivity : AppCompatActivity() {
 
         endOkBtn.setOnClickListener {
             dialog.dismiss()
+            viewModel.sendImageToServer(userId, challengeId, currentImgUri)
             naviToChallengeFragment()
         }
         endCloseBtn.setOnClickListener {
             dialog.dismiss()
+            viewModel.sendImageToServer(userId, challengeId, currentImgUri)
             naviToChallengeFragment()
         }
 
@@ -287,11 +294,6 @@ class ChallengeCameraActivity : AppCompatActivity() {
             setContentView(layoutId)
             setCancelable(false)
         }
-    }
-
-    /** 서버에 이미지 및 데이터 전송하는 함수*/
-    private fun sendImageToServer(userId: String?, challengeId: String?, currentImgUri: Uri?) {
-
     }
 
     /** ChallengeFragment 이동하는 함수 */
