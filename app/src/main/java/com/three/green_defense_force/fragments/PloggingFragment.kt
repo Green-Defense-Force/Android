@@ -1,6 +1,7 @@
 package com.three.green_defense_force.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -23,6 +24,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.three.green_defense_force.R
+import com.three.green_defense_force.activities.GameActivity
+import com.three.green_defense_force.activities.PloggingCameraActivity
 import com.three.green_defense_force.databinding.FragmentPloggingBinding
 
 // OnMapReadyCallback 추가
@@ -85,6 +88,12 @@ class PloggingFragment : Fragment(), OnMapReadyCallback {
         // 종료 버튼 리스너 설정
         binding.endBtn.setOnClickListener {
             endPlogging()
+        }
+
+        // 촬영 버튼 리스너 설정
+        binding.takeBtn.setOnClickListener {
+            val intent = Intent(activity, PloggingCameraActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

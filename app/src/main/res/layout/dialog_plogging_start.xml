@@ -40,7 +40,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/neodgm"
-            android:text="플로깅을 시작할까요?"
+            android:text="플로깅을 시작해 볼까요?"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -50,7 +50,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/neodgm"
-            android:text="플로깅은 쓰레기를 주우며 조깅하는 행위입니다."
+            android:text="시작하시려면 빨간 재생 버튼을 눌러주세요."
             android:textSize="12sp" />
 
         <Button
@@ -61,7 +61,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/dialog_plogging_btn"
             android:fontFamily="@font/neodgm"
-            android:text="시작하기"
+            android:text="확 인"
             android:textSize="18sp" />
 
     </LinearLayout>

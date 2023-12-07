@@ -28,6 +28,10 @@
             android:value="${GOOGLE_MAPS_API_KEY}" />
 
         <activity
+            android:name=".activities.PloggingCameraActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.ChallengeCameraActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
