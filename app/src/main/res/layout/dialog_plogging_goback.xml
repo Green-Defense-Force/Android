@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/ploggingDialogStart"
         android:layout_width="330dp"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:src="@drawable/dialog_plogging_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:layout_width="322dp"
-        android:layout_height="182dp"
+        android:layout_height="192dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/ploggingDialogStart"
         app:layout_constraintEnd_toEndOf="@+id/ploggingDialogStart"
@@ -43,11 +43,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/ploggingDialogClose"
+                android:id="@+id/ploggingCloseBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/dialog_close_btn"
+                android:background="@drawable/dialog_plogging_close_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
