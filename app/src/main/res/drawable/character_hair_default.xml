@@ -1,0 +1,9 @@
+<vector android:height="170dp" android:viewportHeight="850"
+    android:viewportWidth="450" android:width="90dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="hair_default">
+        <path android:fillColor="#000000" android:pathData="M75,50H25V200H75V50Z"/>
+        <path android:fillColor="#000000" android:pathData="M425,50H375V200H425V50Z"/>
+        <path android:fillColor="#000000" android:pathData="M375,0H75V150H375V0Z"/>
+        <path android:fillColor="#000000" android:pathData="M425,50H25V150H425V50Z"/>
+    </group>
+</vector>
