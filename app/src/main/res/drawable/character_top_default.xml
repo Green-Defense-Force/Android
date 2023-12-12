@@ -1,8 +1,0 @@
-<vector android:height="170dp" android:viewportHeight="850"
-    android:viewportWidth="450" android:width="90dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:name="top_default">
-        <path android:fillColor="#ffffff" android:pathData="M175,400H75V650H175V400Z"/>
-        <path android:fillColor="#ffffff" android:pathData="M375,400H275V650H375V400Z"/>
-        <path android:fillColor="#ffffff" android:pathData="M375,450H75V650H375V450Z"/>
-    </group>
-</vector>

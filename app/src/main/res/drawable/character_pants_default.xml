@@ -1,8 +1,0 @@
-<vector android:height="170dp" android:viewportHeight="850"
-    android:viewportWidth="450" android:width="90dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:name="pants_default">
-        <path android:fillColor="#737373" android:pathData="M375,550H75V650H375V550Z"/>
-        <path android:fillColor="#737373" android:pathData="M175,550H75V750H175V550Z"/>
-        <path android:fillColor="#737373" android:pathData="M375,550H275V750H375V550Z"/>
-    </group>
-</vector>
