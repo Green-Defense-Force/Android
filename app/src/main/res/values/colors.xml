@@ -20,5 +20,6 @@
     <color name="plogging_main">#804D85DA</color>
     <color name="plogging_dialog">#FF0059C1</color>
     <color name="polyline_color">#FFE30000</color>
-    <color name="dialog_background">#66000000</color>
+    <color name="dialog_top_bar">#FF02007F</color>
+    <color name="scrollbar_bg">#FFE0E0E0</color>
 </resources>
