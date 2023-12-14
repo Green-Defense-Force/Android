@@ -6,28 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".fragments.StoreDialogFragment">
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/storeBackground"
         android:layout_width="357dp"
-        android:layout_height="702dp"
-        android:src="@drawable/dialog_store_bg"
+        android:layout_height="wrap_content"
+        android:background="@drawable/store_inventory_main_bg"
+        android:orientation="vertical"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="349dp"
-        android:layout_height="694dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/storeBackground"
-        app:layout_constraintEnd_toEndOf="@+id/storeBackground"
-        app:layout_constraintStart_toStartOf="@+id/storeBackground"
-        app:layout_constraintTop_toTopOf="@+id/storeBackground">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/storeTopbar"
-            android:layout_width="349dp"
+            android:layout_width="match_parent"
             android:layout_height="32dp"
             android:background="@color/dialog_top_bar">
 
@@ -49,7 +42,11 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/dialog_store_close_btn"
+                android:background="@drawable/store_inventory_main_bg"
+                android:fontFamily="@font/w95fa"
+                android:text="X"
+                android:textSize="15dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -57,11 +54,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_width="335dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="5dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/store_category_bg"
+            android:background="@drawable/store_inventory_category_bg"
             android:padding="5dp">
 
             <HorizontalScrollView
@@ -84,7 +82,7 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_marginHorizontal="5dp"
-                        android:background="@drawable/store_category_checked"
+                        android:background="@drawable/store_inventory_category_checked"
                         android:fontFamily="@font/w95fa"
                         android:text="Hair"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -97,7 +95,7 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_marginHorizontal="5dp"
-                        android:background="@drawable/store_category_unchecked"
+                        android:background="@drawable/store_inventory_category_unchecked"
                         android:fontFamily="@font/w95fa"
                         android:text="Top"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -110,7 +108,7 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_marginHorizontal="5dp"
-                        android:background="@drawable/store_category_unchecked"
+                        android:background="@drawable/store_inventory_category_unchecked"
                         android:fontFamily="@font/w95fa"
                         android:text="Pants"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -123,7 +121,7 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_marginHorizontal="5dp"
-                        android:background="@drawable/store_category_unchecked"
+                        android:background="@drawable/store_inventory_category_unchecked"
                         android:fontFamily="@font/w95fa"
                         android:text="Shoes"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -136,7 +134,7 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_marginHorizontal="5dp"
-                        android:background="@drawable/store_category_unchecked"
+                        android:background="@drawable/store_inventory_category_unchecked"
                         android:fontFamily="@font/w95fa"
                         android:text="Weapon"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -149,7 +147,7 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_marginHorizontal="5dp"
-                        android:background="@drawable/store_category_unchecked"
+                        android:background="@drawable/store_inventory_category_unchecked"
                         android:fontFamily="@font/w95fa"
                         android:text="Acc"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -165,56 +163,73 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:gravity="center">
 
             <ImageView
                 android:id="@+id/charDefaultImage"
                 android:layout_width="90dp"
                 android:layout_height="170dp"
-                android:src="@drawable/character_char_default"
+                android:src="@drawable/char_body_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/pantsDefaultImage"
-                android:layout_width="90dp"
-                android:layout_height="170dp"
-                android:src="@drawable/character_pants_default"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/shoesImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/charDefaultImage"
+                app:layout_constraintEnd_toEndOf="@+id/charDefaultImage"
+                app:layout_constraintStart_toStartOf="@+id/charDefaultImage" />
 
             <ImageView
-                android:id="@+id/topDefaultImage"
-                android:layout_width="90dp"
-                android:layout_height="170dp"
-                android:src="@drawable/character_top_default"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/pantsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                app:layout_constraintEnd_toEndOf="@+id/charDefaultImage"
+                app:layout_constraintStart_toStartOf="@+id/charDefaultImage"
+                app:layout_constraintTop_toTopOf="@+id/charDefaultImage" />
 
             <ImageView
-                android:id="@+id/hairDefaultImage"
-                android:layout_width="90dp"
-                android:layout_height="170dp"
-                android:src="@drawable/character_hair_default"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/topImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                app:layout_constraintEnd_toEndOf="@+id/charDefaultImage"
+                app:layout_constraintStart_toStartOf="@+id/charDefaultImage"
+                app:layout_constraintTop_toTopOf="@+id/charDefaultImage" />
+
+            <ImageView
+                android:id="@+id/hairImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitStart"
+                app:layout_constraintEnd_toEndOf="@+id/charDefaultImage"
+                app:layout_constraintStart_toStartOf="@+id/charDefaultImage"
+                app:layout_constraintTop_toTopOf="@+id/charDefaultImage" />
+
+            <ImageView
+                android:id="@+id/glassesImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="@+id/charDefaultImage"
+                app:layout_constraintStart_toStartOf="@+id/charDefaultImage"
+                app:layout_constraintTop_toTopOf="@+id/charDefaultImage" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_width="335dp"
-            android:layout_height="310dp"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
             android:layout_gravity="center"
-            android:background="@drawable/store_main_bg"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/store_inventory_item_bg"
             android:padding="2.5dp">
 
             <ScrollView
@@ -235,7 +250,7 @@
                         android:id="@+id/storeRecyclerView"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginLeft="5dp" />
 
                 </LinearLayout>
 
@@ -244,16 +259,16 @@
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="335dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp">
+            android:layout_margin="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/coinContainer"
                 android:layout_width="110dp"
                 android:layout_height="35dp"
-                android:background="@drawable/store_coin_bg"
+                android:background="@drawable/store_inventory_coin_bg"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -270,7 +285,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/coinTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
@@ -285,9 +300,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
+                android:id="@+id/purchaseBtn"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
-                android:background="@drawable/store_buy_btn"
+                android:background="@drawable/store_inventory_buy_btn"
                 android:fontFamily="@font/neodgm"
                 android:text="구매하기"
                 android:textColor="#979797"
@@ -295,7 +311,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

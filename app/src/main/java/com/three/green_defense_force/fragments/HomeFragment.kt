@@ -48,15 +48,6 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    /** 다이얼로그 생성하는 함수 */
-    private fun createDialog(layoutId: Int): Dialog {
-        return Dialog(requireContext()).apply {
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setContentView(layoutId)
-            setCancelable(false)
-        }
-    }
-
     /** 상태바 및 하단바 색상 지정하는 함수 */
     private fun setBarColor() {
         val window = requireActivity().window
