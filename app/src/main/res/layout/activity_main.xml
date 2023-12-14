@@ -39,7 +39,7 @@
             android:layout_height="50dp"
             android:layout_margin="15sp"
             android:background="@drawable/bottom_nav_item_selected"
-            android:drawableLeft="@drawable/icon_home"
+            android:drawableLeft="@drawable/bottom_nav_icon_home"
             android:fontFamily="@font/w95fa"
             android:padding="9dp"
             android:text="Home"
