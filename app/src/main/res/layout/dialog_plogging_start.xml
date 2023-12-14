@@ -8,7 +8,7 @@
         android:id="@+id/ploggingDialogStart"
         android:layout_width="330dp"
         android:layout_height="200dp"
-        android:src="@drawable/dialog_plogging_bg"
+        android:src="@drawable/plogging_dialog_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:background="@drawable/dialog_plogging_btn"
+            android:background="@drawable/plogging_dialog_btn"
             android:fontFamily="@font/neodgm"
             android:text="확 인"
             android:textSize="18sp" />
