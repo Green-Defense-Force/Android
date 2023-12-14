@@ -104,6 +104,7 @@ class GameActivity : AppCompatActivity() {
     private fun loadImageFromUrl(url: String, imageView: ImageView) {
         Glide.with(this)
             .load(url)
+            .thumbnail(0.1f)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)
     }
